@@ -4168,7 +4168,7 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _models_Search__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./models/Search */ \"./src/js/models/Search.js\");\n// Global App Controller\r\n\r\n\r\n/** Global state of the app\r\n * - Search object\r\n * - Current recipe object\r\n * - Shopping list object\r\n * - Liked Recipes\r\n */\r\nconst state = {};\r\n\r\nconst controlSearch = async () => {\r\n    // 1. Get the query from the view.\r\n    const query = 'pizza';\r\n\r\n    if (query) {\r\n        // 2. New search object to add to state\r\n        state.search = new _models_Search__WEBPACK_IMPORTED_MODULE_0__[\"default\"](query);\r\n\r\n        // 3. Prepare UI for results.\r\n\r\n        // 4. Search for recipes\r\n        await state.search.getResults();\r\n\r\n        // 5. Render results on UI\r\n        console.log(state.search.result);\r\n    }\r\n}\r\n\r\ndocument.querySelector('.search').addEventListener('submit', e => {\r\n    e.preventDefault();\r\n    controlSearch();\r\n});\n\n//# sourceURL=webpack:///./src/js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _models_Search__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./models/Search */ \"./src/js/models/Search.js\");\n/* harmony import */ var _views_searchView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/searchView */ \"./src/js/views/searchView.js\");\n/* harmony import */ var _views_base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/base */ \"./src/js/views/base.js\");\n// Global App Controller\r\n\r\n\r\n\r\n\r\n/** Global state of the app\r\n * - Search object\r\n * - Current recipe object\r\n * - Shopping list object\r\n * - Liked Recipes\r\n */\r\nconst state = {};\r\n\r\nconst controlSearch = async () => {\r\n    // 1. Get the query from the view.\r\n    const query = _views_searchView__WEBPACK_IMPORTED_MODULE_1__[\"getInput\"]();\r\n    console.log(query);\r\n\r\n    if (query) {\r\n        // 2. New search object to add to state\r\n        state.search = new _models_Search__WEBPACK_IMPORTED_MODULE_0__[\"default\"](query);\r\n\r\n        // 3. Prepare UI for results.\r\n\r\n        // 4. Search for recipes\r\n        await state.search.getResults();\r\n\r\n        // 5. Render results on UI\r\n        console.log(state.search.result);\r\n    }\r\n}\r\n\r\n_views_base__WEBPACK_IMPORTED_MODULE_2__[\"elements\"].searchForm.addEventListener('submit', e => {\r\n    e.preventDefault();\r\n    controlSearch();\r\n});\n\n//# sourceURL=webpack:///./src/js/index.js?");
 
 /***/ }),
 
@@ -4181,6 +4181,30 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Search; });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n\r\n\r\nclass Search {\r\n    constructor(query) {\r\n        this.query = query;\r\n    }\r\n\r\n    async getResults() {\r\n        try {\r\n            const res = await axios__WEBPACK_IMPORTED_MODULE_0___default()(`https://forkify-api.herokuapp.com/api/search?&q=${this.query}`);\r\n            \r\n            // Storing the recipes as object properties.\r\n            this.result = res.data.recipes;\r\n        } catch (error) {\r\n            alert(error);\r\n        }\r\n    }\r\n}\n\n//# sourceURL=webpack:///./src/js/models/Search.js?");
+
+/***/ }),
+
+/***/ "./src/js/views/base.js":
+/*!******************************!*\
+  !*** ./src/js/views/base.js ***!
+  \******************************/
+/*! exports provided: elements */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"elements\", function() { return elements; });\n// It holds all of our DOM elements, to avoid document.querySelector at\r\n// multiple places in code.\r\n\r\nconst elements = {\r\n    searchForm: document.querySelector('.search'),\r\n    searchInput : document.querySelector('.search__field')\r\n};\n\n//# sourceURL=webpack:///./src/js/views/base.js?");
+
+/***/ }),
+
+/***/ "./src/js/views/searchView.js":
+/*!************************************!*\
+  !*** ./src/js/views/searchView.js ***!
+  \************************************/
+/*! exports provided: getInput */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getInput\", function() { return getInput; });\n/* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./base */ \"./src/js/views/base.js\");\n\r\n\r\nconst getInput = () => _base__WEBPACK_IMPORTED_MODULE_0__[\"elements\"].searchInput.value;\n\n//# sourceURL=webpack:///./src/js/views/searchView.js?");
 
 /***/ }),
 
