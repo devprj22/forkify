@@ -37,3 +37,15 @@ elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
 });
+
+elements.searchResPages.addEventListener('click', e => {
+    // We want the button, even if we click at the text in
+    // button or in the icon.
+    const btn = e.target.closest('.btn-inline');
+    if (btn) {
+        // 10 is the radix
+        const gotoPage = parseInt(btn.dataset.goto, 10);
+        searchView.clearResults();
+        searchView.renderResults(state.search.result, gotoPage);
+    }
+});
