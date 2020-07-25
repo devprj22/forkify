@@ -26,7 +26,6 @@ const limitRecipeTitle = (title, limit = 17) => {
 
         // Return the result
         // Join method is the opposite of split here.
-
         return `${newTitle.join(' ')} ...`;
     }
     
