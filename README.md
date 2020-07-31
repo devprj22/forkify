@@ -17,4 +17,4 @@ npm run start
 
 ### API Details
 We use the Forkify API in this app.
-Detais on the same can be found on this link - http://forkify-api.herokuapp.com/
+Details on the same can be found on this link - http://forkify-api.herokuapp.com/
