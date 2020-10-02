@@ -11,11 +11,11 @@ export const elements = {
     shopping: document.querySelector('.shopping__list'),
     likesMenu: document.querySelector('.likes__field'),
     likesList: document.querySelector('.likes__list'),
-}
+};
 
 export const elementStrings = {
     loader: 'loader',
-}
+};
 
 export const renderLoader = (parent) => {
     // The styling in css causes this to animate and rotate continuously.
@@ -25,15 +25,15 @@ export const renderLoader = (parent) => {
                 <use href="img/icons.svg#icon-cw"></use>
             </svg>
         </div>
-    `
+    `;
 
-    parent.insertAdjacentHTML('afterbegin', loader)
-}
+    parent.insertAdjacentHTML('afterbegin', loader);
+};
 
 export const clearLoader = () => {
-    const loader = document.querySelector(`.${elementStrings.loader}`)
+    const loader = document.querySelector(`.${elementStrings.loader}`);
 
     if (loader) {
-        loader.parentElement.removeChild(loader)
+        loader.parentElement.removeChild(loader);
     }
-}
+};

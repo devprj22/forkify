@@ -1,9 +1,14 @@
 {
-    "extends": ["airbnb-base", "prettier"],
-    "pluggins": ["prettier"],
+    "extends": ["airbnb-base/legacy", "prettier"],
+    "env": {
+        "browser": true
+    },
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 8
+    },
     "rules": {
-        "prettier/prettier":"error",
-        "no-used-vars": "warn",
-        "no-console": "off"
+        "no-eval":"warn",
+        "no-param-reassign":"warn"
     }
 }

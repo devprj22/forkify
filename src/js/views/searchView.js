@@ -1,44 +1,44 @@
-import { elements } from './base'
+import { elements } from './base';
 
-export const getInput = () => elements.searchInput.value
+export const getInput = () => elements.searchInput.value;
 
 export const clearInput = () => {
-    elements.searchInput.value = ''
-}
+    elements.searchInput.value = '';
+};
 
 export const clearResults = () => {
-    elements.searchResList.innerHTML = ''
-    elements.searchResPages.innerHTML = ''
-}
+    elements.searchResList.innerHTML = '';
+    elements.searchResPages.innerHTML = '';
+};
 
 export const highlightSelected = (id) => {
-    const resultsArr = Array.from(document.querySelectorAll('.results__link'))
-    resultsArr.forEach((el) => el.classList.remove('results__link--active'))
+    const resultsArr = Array.from(document.querySelectorAll('.results__link'));
+    resultsArr.forEach((el) => el.classList.remove('results__link--active'));
 
     document
         .querySelector(`.results__link[href*="#${id}"]`)
-        .classList.add('results__link--active')
-}
+        .classList.add('results__link--active');
+};
 
 export const limitRecipeTitle = (title, limit = 17) => {
-    const newTitle = []
+    const newTitle = [];
 
     if (title.length > limit) {
         title.split(' ').reduce((acc, curr) => {
             if (acc + curr.length <= limit) {
-                newTitle.push(curr)
+                newTitle.push(curr);
             }
 
-            return acc + curr.length
-        }, 0)
+            return acc + curr.length;
+        }, 0);
 
         // Return the result
         // Join method is the opposite of split here.
-        return `${newTitle.join(' ')} ...`
+        return `${newTitle.join(' ')} ...`;
     }
 
-    return title
-}
+    return title;
+};
 
 const renderRecipe = (recipe) => {
     const markup = `
@@ -55,11 +55,11 @@ const renderRecipe = (recipe) => {
                 </div>
             </a>
         </li>
-    `
+    `;
 
     // Adding this markup to the result list
-    elements.searchResList.insertAdjacentHTML('beforeend', markup)
-}
+    elements.searchResList.insertAdjacentHTML('beforeend', markup);
+};
 
 // type : 'prev' or 'next'
 // data-goto is a data attribute we are addding to the button.
@@ -74,37 +74,37 @@ const createButton = (page, type) => `
         </svg>
         <span>Page ${type === 'prev' ? page - 1 : page + 1}</span>
     </button>
-`
+`;
 
 const renderButtons = (page, numResults, resPerPage) => {
-    const pages = Math.ceil(numResults / resPerPage)
-    let button
+    const pages = Math.ceil(numResults / resPerPage);
+    let button;
 
-    if (page == 1 && pages > 1) {
+    if (page === 1 && pages > 1) {
         // Button to go to next page
-        button = createButton(page, 'next')
+        button = createButton(page, 'next');
     } else if (page < pages) {
         // Both buttons
         button = `
                 ${createButton(page, 'prev')}
                 ${createButton(page, 'next')}
-            `
-    } else if (page == pages && pages > 1) {
+            `;
+    } else if (page === pages && pages > 1) {
         // Button to go to previous page
-        button = createButton(page, 'prev')
+        button = createButton(page, 'prev');
     }
 
-    elements.searchResPages.insertAdjacentHTML('afterbegin', button)
-}
+    elements.searchResPages.insertAdjacentHTML('afterbegin', button);
+};
 
 export const renderResults = (recipes, page = 1, resPerPage = 10) => {
     // Rendering results of current page
-    const start = (page - 1) * resPerPage
-    const end = page * resPerPage
+    const start = (page - 1) * resPerPage;
+    const end = page * resPerPage;
 
     // Current element is automatically passed in the renderRecipe method.
-    recipes.slice(start, end).forEach(renderRecipe)
+    recipes.slice(start, end).forEach(renderRecipe);
 
     // Rendering the pagination buttons
-    renderButtons(page, recipes.length, resPerPage)
-}
+    renderButtons(page, recipes.length, resPerPage);
+};
