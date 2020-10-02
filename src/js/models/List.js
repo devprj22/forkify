@@ -1,33 +1,32 @@
-import uniqid from 'uniqid';
+import uniqid from 'uniqid'
 
 export default class List {
     constructor() {
-        this.items = [];
+        this.items = []
     }
 
     addItem(count, unit, ingredient) {
         const item = {
-            id : uniqid(),
+            id: uniqid(),
             count,
             unit,
-            ingredient
-        };
+            ingredient,
+        }
 
-        this.items.push(item);
-        return item;
+        this.items.push(item)
+        return item
     }
 
     deleteItem(id) {
-        const index = this.items.findIndex(el => {
-            el.id === id;
-        });
+        const index = this.items.findIndex((el) => {
+            el.id === id
+        })
 
-        this.items.splice(index, 1);
+        this.items.splice(index, 1)
     }
 
     updateCount(id, newCount) {
-
         if (newCount >= 0)
-            this.items.find(el => el.id === id).count = newCount;
+            this.items.find((el) => el.id === id).count = newCount
     }
-};
+}
