@@ -1,11 +1,10 @@
-import {elements} from './base';
+import { elements } from './base'
 
 export const clearList = () => {
-    elements.shopping.innerHTML = '';
+    elements.shopping.innerHTML = ''
 }
 
-export const renderItem = item => {
-    
+export const renderItem = (item) => {
     const markup = `
 
     <li class="shopping__item" data-itemid=${item.id}>
@@ -20,14 +19,13 @@ export const renderItem = item => {
             </svg>
         </button>
     </li>
-    `;
+    `
 
-    elements.shopping.insertAdjacentHTML('beforeend', markup);
-};
+    elements.shopping.insertAdjacentHTML('beforeend', markup)
+}
 
-export const deleteItem = id => {
-    const item = document.querySelector(`[data-itemid="${id}"]`);
+export const deleteItem = (id) => {
+    const item = document.querySelector(`[data-itemid="${id}"]`)
 
-    if (item)
-        item.parentElement.removeChild(item);
-};
+    if (item) item.parentElement.removeChild(item)
+}
